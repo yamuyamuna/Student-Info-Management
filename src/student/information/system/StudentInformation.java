@@ -12,10 +12,6 @@ package student.information.system;
  */
 import net.proteanit.sql.DbUtils;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
@@ -33,9 +28,7 @@ public class StudentInformation extends javax.swing.JFrame {
 Connection conn=null;
 ResultSet rs=null;
 PreparedStatement pst=null;
-    /**
-     * Creates new form Staff_details
-     */
+   
     public StudentInformation() {
         initComponents();
         conn=db.java_db();
@@ -46,7 +39,7 @@ PreparedStatement pst=null;
         currentDate();
         Update_table();
         
-        txt_emp.setText(String.valueOf(Emp.empId).toString());
+
     }
    
     public void currentDate (){
@@ -135,15 +128,12 @@ PreparedStatement pst=null;
         txt_studentid = new javax.swing.JTextField();
         txt_courseid = new javax.swing.JTextField();
         txt_emp = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         student_table = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         txt_search1 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
-        File = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         lbl_date = new javax.swing.JMenu();
         lbl_time = new javax.swing.JMenu();
 
@@ -378,10 +368,6 @@ PreparedStatement pst=null;
                 .addContainerGap(146, Short.MAX_VALUE))
         );
 
-        txt_emp.setText("emp");
-
-        jLabel10.setText("Logged in As :");
-
         student_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -436,18 +422,6 @@ PreparedStatement pst=null;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        File.setText("File");
-
-        jMenuItem1.setText("Attach Image");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        File.add(jMenuItem1);
-
-        jMenuBar1.add(File);
-
         lbl_date.setText("Date");
         jMenuBar1.add(lbl_date);
 
@@ -466,8 +440,6 @@ PreparedStatement pst=null;
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_emp))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -478,55 +450,22 @@ PreparedStatement pst=null;
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_emp))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_emp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        
-        JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        File f = chooser.getSelectedFile();
-        
-        filename =f.getAbsolutePath();
-      //  ImageIcon imageIcon = new ImageIcon(new ImageIcon(filename).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_DEFAULT));
-       // lbl_img.setIcon(imageIcon);
-      try {
-
-            File image = new File(filename);
-            FileInputStream fis = new FileInputStream (image);
-            ByteArrayOutputStream bos= new ByteArrayOutputStream();
-            byte[] buf = new byte[1024];
-
-            for(int readNum; (readNum=fis.read(buf))!=-1; ){
-
-                bos.write(buf,0,readNum);
-            }
-            person_image=bos.toByteArray();
-        }
-
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
-
-        }
-       
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void txt_search1ComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_txt_search1ComponentRemoved
         // TODO add your handling code here:
@@ -580,9 +519,7 @@ PreparedStatement pst=null;
             txt_courseid.setText(add11);
            
 
-          //  byte[] img = rs.getBytes("Image");
-          //  ImageIcon imageIcon = new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), Image.SCALE_SMOOTH));
-          //  lbl_img.setIcon(imageIcon);
+       
 
         }catch(Exception e){
             
@@ -739,7 +676,6 @@ PreparedStatement pst=null;
         txt_add2.setText("");
         txt_pc.setText("");
         txt_apt.setText("");
-       // lbl_img.setIcon(null);
         txt_search1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -892,14 +828,12 @@ PreparedStatement pst=null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu File;
     private javax.swing.JButton cmd_save;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -916,7 +850,6 @@ PreparedStatement pst=null;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
@@ -940,8 +873,7 @@ PreparedStatement pst=null;
     private javax.swing.JTextField txt_tel;
     // End of variables declaration//GEN-END:variables
      
-    private ImageIcon format =null;
-    //strin filename
+ 
     String filename = null;
     byte[] person_image = null;
     
